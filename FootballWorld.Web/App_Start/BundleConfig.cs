@@ -9,7 +9,8 @@ namespace FootballWorld
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery-ui.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -25,6 +26,7 @@ namespace FootballWorld
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/superhero.bootstrap.css",
+                      "~/Content/jquery-ui.css",
                       "~/Content/site.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,

@@ -13,7 +13,7 @@ using FootballWorld.ViewModel;
 
 namespace FootballWorld.Services
 {
-    public class ArticleService
+    public class ArticleService : BaseService
     {
         private IRepository<Article> _articleRepository;
 
@@ -24,7 +24,7 @@ namespace FootballWorld.Services
 
         public IEnumerable<Article> GetViews()
         {
-            IEnumerable<Article> articles = _articleRepository.FindAll();
+            IEnumerable<Article> articles = this.Data.Articles.FindAll();
             return articles;
         }
 
@@ -36,15 +36,24 @@ namespace FootballWorld.Services
             Article articleToCreate = Mapper.Map<CreateArticleViewModel, Article>(article);
             articleToCreate.Image = uploadFile;
 
-            var articleCreated = _articleRepository.Add(articleToCreate);
+            var articleCreated = this.Data.Articles.Add(articleToCreate);
             return articleCreated.Id;
         }
 
         public DetailsArticleViewModel GetView(int id)
         {
-            var article = _articleRepository.FindById(id);
+            var article = this.Data.Articles.FindById(id);
             var articleToShow = Mapper.Map<Article, DetailsArticleViewModel>(article);
             return articleToShow;
+        }
+
+        public int Edit(DetailsArticleViewModel article)
+        {
+            var articleToEdit = this.Data.Articles.FindById(article.Id);
+            Mapper.DynamicMap<DetailsArticleViewModel, Article>(article, articleToEdit);
+
+            this.Data.Articles.Save();
+            return articleToEdit.Id;
         }
     }
 }

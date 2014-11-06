@@ -17,6 +17,7 @@ namespace FootballWorld.ViewModel
 
         public string Subtitle { get; set; }
 
+        [DataType(DataType.MultilineText)]
         public string Content { get; set; }
 
         public DateTime DateCreated { get; set; }

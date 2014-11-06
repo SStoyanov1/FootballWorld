@@ -43,14 +43,34 @@ namespace FootballWorld.Controllers
             }
 
             _articleService.Create(article);
-            return View();
+            return RedirectToAction("Index");
         }
 
-        //GET Articles/Details
+        //GET Article/Details
         public ActionResult Details(int id)
         {
             var article = _articleService.GetView(id);
             return View(article);
+        }
+
+        //GET Article/Edit
+        public ActionResult Edit(int id)
+        {
+            var article = _articleService.GetView(id);
+            return View(article);
+        }
+
+        //POST Article/Edit
+        [HttpPost]
+        public ActionResult Edit(DetailsArticleViewModel article)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(article);
+            }
+
+            _articleService.Edit(article);
+            return RedirectToAction("Index");
         }
     }
 }
