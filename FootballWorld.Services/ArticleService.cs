@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using AutoMapper;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 using FootballWorld.Data;
@@ -29,17 +30,11 @@ namespace FootballWorld.Services
 
         public int Create(CreateArticleViewModel article)
         {
-            Article articleToCreate = new Article();
-
             byte[] uploadFile = new byte[article.Image.InputStream.Length];
             article.Image.InputStream.Read(uploadFile, 0, uploadFile.Length);
 
-            articleToCreate.Title = article.Title;
-            articleToCreate.Content = article.Content;
-            articleToCreate.Subtitle = article.Subtitle;
-            articleToCreate.ImageName = article.Image.FileName;
+            Article articleToCreate = Mapper.Map<CreateArticleViewModel, Article>(article);
             articleToCreate.Image = uploadFile;
-            articleToCreate.DateCreated = DateTime.Now;
 
             var articleCreated = _articleRepository.Add(articleToCreate);
             return articleCreated.Id;
@@ -48,15 +43,7 @@ namespace FootballWorld.Services
         public DetailsArticleViewModel GetView(int id)
         {
             var article = _articleRepository.FindById(id);
-
-            var articleToShow = new DetailsArticleViewModel();
-            articleToShow.Id = article.Id;
-            articleToShow.Title = article.Title;
-            articleToShow.Subtitle = article.Subtitle;
-            articleToShow.Content = article.Content;
-            articleToShow.DateCreated = article.DateCreated;
-            articleToShow.Image = article.Image;
-
+            var articleToShow = Mapper.Map<Article, DetailsArticleViewModel>(article);
             return articleToShow;
         }
     }

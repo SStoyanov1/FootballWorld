@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -45,6 +51,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,9 +60,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="AutoMapperConfiguration.cs" />
     <Compile Include="EFRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="MapperProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,9 +76,14 @@
       <Project>{1f765bf5-17a9-43ea-a554-4bd822fffad8}</Project>
       <Name>FootballWorld.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FootballWorld.ViewModel\FootballWorld.ViewModel.csproj">
+      <Project>{19f58739-72f6-44ef-887f-dc22f7bcc71e}</Project>
+      <Name>FootballWorld.ViewModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

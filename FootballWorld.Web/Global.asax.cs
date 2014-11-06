@@ -14,6 +14,7 @@ namespace FootballWorld
     {
         protected void Application_Start()
         {
+            AutoMapperConfiguration.Configure();
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
