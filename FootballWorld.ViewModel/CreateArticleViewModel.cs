@@ -1,22 +1,15 @@
-﻿using System;
+﻿using FootballWorld.Model;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace FootballWorld.Model
+namespace FootballWorld.ViewModel
 {
-    public class Article
+    public class CreateArticleViewModel
     {
-        public Article()
-        {
-            this.Comments = new HashSet<Comment>();
-        }
-
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         [StringLength(100, MinimumLength = 6)]
         public string Title { get; set; }
@@ -31,14 +24,11 @@ namespace FootballWorld.Model
 
         public DateTime DateCreated { get; set; }
 
-        public string ImageName { get; set; }
-
-        public byte[] Image { get; set; }
-
         public string AuthorId { get; set; }
 
-        public virtual ApplicationUser Author { get; set; }
+        [DisplayName("Select File to Upload")]
+        public HttpPostedFileBase Image { get; set; }
 
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ApplicationUser Author { get; set; }
     }
 }
