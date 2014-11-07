@@ -18,7 +18,9 @@ namespace FootballWorld.Data
     {
         protected override void Configure()
         {
-            CreateMap<Article, DetailsArticleViewModel>().ReverseMap();
+            CreateMap<Article, DetailsArticleViewModel>();
+            CreateMap<DetailsArticleViewModel, Article>()
+                .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.Image));
 
             CreateMap<CreateArticleViewModel, Article>()
                 .ForMember(dest => dest.Image, opt => opt.Ignore())

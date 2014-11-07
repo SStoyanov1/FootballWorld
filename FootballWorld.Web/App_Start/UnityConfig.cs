@@ -44,7 +44,9 @@ namespace FootballWorld.App_Start
         /// change the defaults), as Unity allows resolving a concrete type even if it was not previously registered.</remarks>
         public static void RegisterTypes(IUnityContainer container)
         {
-            container.RegisterType<ArticleService>(new Interceptor<VirtualMethodInterceptor>(), new InterceptionBehavior<LoggingInterceptionBehavior>());
+            container.RegisterType<ArticlesService>(new Interceptor<VirtualMethodInterceptor>(), new InterceptionBehavior<LoggingInterceptionBehavior>());
+            container.RegisterType<RolesService>(new Interceptor<VirtualMethodInterceptor>(), new InterceptionBehavior<LoggingInterceptionBehavior>());
+            container.RegisterType<UsersService>(new Interceptor<VirtualMethodInterceptor>(), new InterceptionBehavior<LoggingInterceptionBehavior>());
 
             container.RegisterType(typeof(UserManager<>), new InjectionConstructor(typeof(IUserStore<>)));
             container.RegisterType<IUser>(new InjectionFactory(c => c.Resolve<IUser>()));

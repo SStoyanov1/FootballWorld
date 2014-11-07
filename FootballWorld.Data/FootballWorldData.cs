@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using FootballWorld.Model;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FootballWorld.Data
 {
@@ -31,6 +32,16 @@ namespace FootballWorld.Data
         public IRepository<Comment> Comments
         {
             get { return this.GetRepository<Comment>(); }
+        }
+
+        public IRepository<IdentityRole> Roles
+        {
+            get { return this.GetRepository<IdentityRole>(); }
+        }
+
+        public IRepository<ApplicationUser> Users
+        {
+            get { return this.GetRepository<ApplicationUser>(); }
         }
 
         public void SaveChanges()
