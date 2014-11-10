@@ -24,12 +24,26 @@
                 return;
             }
 
+            var categories = new List<Category>()
+            {
+                new Category() { CategoryName = "Spanish football" },
+                new Category() { CategoryName = "English football" },
+                new Category() { CategoryName = "German football" },
+                new Category() { CategoryName = "Italian football" },
+                new Category() { CategoryName = "Bulgarian football" }
+            };
+
+            context.Categories.AddOrUpdate(categories.ToArray());
+
             var articles = new List<Article>() {
                 new Article() { Title = "Лудогорец измъкна паметна победа срещу Базел и излезе втори", Subtitle = "Клубът постигна първа победа за България в групите", Content = "Съдържание" , DateCreated = DateTime.Now },
                 new Article() { Title = "Statiya1", Subtitle = "Втора статия", Content = "Sudurjanieeee1", DateCreated = DateTime.Now },
                 new Article() { Title = "Statiya2", Subtitle = "Трета статия", Content = "Sudurjanieeee2", DateCreated = DateTime.Now }
             };
 
+            articles[0].Categories.Add(categories[0]);
+            articles[0].Categories.Add(categories[1]);
+            
             context.Articles.AddOrUpdate(articles.ToArray());
 
             try

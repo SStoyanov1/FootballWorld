@@ -93,6 +93,18 @@ namespace FootballWorld.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
+                if (model.FirstName != null)
+                {
+                    user.FirstName = model.FirstName;
+                }
+                if (model.LastName != null)
+                {
+                    user.LastName = model.LastName;
+                }
+                if (model.PhoneNumber != null)
+                {
+                    user.PhoneNumber = model.PhoneNumber;
+                }
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

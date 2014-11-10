@@ -1,0 +1,57 @@
+﻿@model FootballWorld.ViewModel.DetailsArticleViewModel
+
+@{
+    ViewBag.Title = "View";
+}
+
+<div class="jumbotron">
+    <h2 class="title-details">@Html.DisplayFor(model => model.Title)</h2>
+    <p class="subtitle-details">@Html.DisplayFor(model => model.Subtitle)</p>
+</div>
+
+<div>
+    @{
+        if (Model.Image != null)
+        {
+            string imageBase64 = Convert.ToBase64String(Model.Image);
+            string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+            <hr />
+            <div >
+                <img src="@imageSrc" class="img-details" />
+            </div>
+        }
+    }
+    <br />
+    <p class="text-warning"><strong>Published:</strong><span>@Html.DisplayFor(model => model.DateCreated)</span></p>
+    <hr />
+    <div class ="content-details">
+        @Html.DisplayFor(model => model.Content)
+    </div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorName)
+        </dd>
+
+        @if (Model.Categories.ToList().Count > 0)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Categories)
+            </dt>
+
+            <dd>
+                @foreach (var category in Model.Categories.ToList())
+                {
+                    <span>@category.CategoryName</span>
+                }
+            </dd>
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

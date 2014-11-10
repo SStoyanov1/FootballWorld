@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Roles Listing</h2>
+
+@Html.ActionLink("Create New Role", "Create") | @Html.ActionLink("Manage User Roles", "ManageUserRoles")
+<hr />
+
+@if (TempData["ResultMessage"] != null)
+{
+    <div class="alert alert-dismissable alert-success pull-right" id="alert-success">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong></strong> @TempData["ResultMessage"]
+    </div>
+}
+
+<div>
+    @foreach (var role in Model)
+    {
+        <p><strong>@role.Name | </strong>
+            <span onclick="return confirm('Are you sure you want to delete the role?')"><a href="/Roles/Delete?RoleName=@role.Name" class="delLink">Delete</a></span> | 
+            @Html.ActionLink("Edit", "Edit", new { roleName = @role.Name })
+        </p>
+    }
+</div>
+
+@section Scripts
+{
+    <script>
+        $(function () {
+            $('#alert-success').fadeOut(4000);
+        });
+    </script>
+}

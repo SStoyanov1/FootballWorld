@@ -21,11 +21,13 @@ namespace FootballWorld.Data
 
         public IDbSet<Comment> Comments { get; set; }
 
+        public IDbSet<Category> Categories { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<FootballWorld.ViewModel.DetailsArticleViewModel> DetailsArticleViewModels { get; set; }
+        public System.Data.Entity.DbSet<FootballWorld.ViewModel.UsersListViewModel> UsersListViewModels { get; set; }
     }
 }

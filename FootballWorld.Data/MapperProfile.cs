@@ -28,6 +28,8 @@ namespace FootballWorld.Data
                  opts => opts.MapFrom(src => src.Image.FileName))
                 .ForMember(dest => dest.DateCreated,
                  opts => opts.MapFrom(src => DateTime.Now));
+
+            CreateMap<ApplicationUser, UsersListViewModel>().ReverseMap();
         }
     }
 }

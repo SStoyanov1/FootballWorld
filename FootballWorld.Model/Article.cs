@@ -12,6 +12,7 @@ namespace FootballWorld.Model
         public Article()
         {
             this.Comments = new HashSet<Comment>();
+            this.Categories = new HashSet<Category>();
         }
 
         [Key]
@@ -40,5 +41,7 @@ namespace FootballWorld.Model
         public virtual ApplicationUser Author { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
+
+        public virtual ICollection<Category> Categories { get; set; }
     }
 }
