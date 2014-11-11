@@ -73,5 +73,11 @@ namespace FootballWorld.Services
         {
             this.Data.Articles.DeleteById(articleToDelete.Id);
         }
+
+        public IEnumerable<IndexArticleViewModel> GetLastFiveViews()
+        {
+            var articles = this.Data.Articles.FindAll().OrderBy(x => x.DateCreated).Select(x => Mapper.Map<Article, IndexArticleViewModel>(x)).Take(3).ToList();
+            return articles;
+        }
     }
 }

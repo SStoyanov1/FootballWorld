@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="CreateArticleViewModel.cs" />
     <Compile Include="DetailsArticleViewModel.cs" />
+    <Compile Include="IndexArticleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsersListViewModel.cs" />
   </ItemGroup>

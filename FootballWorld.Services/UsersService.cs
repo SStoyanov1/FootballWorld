@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 
 using FootballWorld.ViewModel;
+using System.Web;
 
 namespace FootballWorld.Services
 {
@@ -31,5 +32,27 @@ namespace FootballWorld.Services
                 Select(us => Mapper.Map<ApplicationUser, UsersListViewModel>(us)).FirstOrDefault();
             return user;
         }
+
+        public string Edit(UsersListViewModel user, HttpPostedFileBase image)
+        {
+            var userToEdit = this.Data.Users.FindAll().Where(us => us.Id == user.Id).FirstOrDefault();
+            if (user.UserName == null)
+            {
+                user.UserName = userToEdit.UserName;
+            }
+            if (image != null)
+            {
+                byte[] uploadFile = new byte[image.InputStream.Length];
+                image.InputStream.Read(uploadFile, 0, uploadFile.Length);
+                user.ProfileImage = uploadFile;
+            }
+            else
+            {
+                user.ProfileImage = userToEdit.ProfileImage;
+            }
+            Mapper.DynamicMap<UsersListViewModel, ApplicationUser>(user, userToEdit);
+            this.Data.Users.Save();
+            return userToEdit.Id;
+        }   
     }
 }

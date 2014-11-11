@@ -27,7 +27,5 @@ namespace FootballWorld.Data
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<FootballWorld.ViewModel.UsersListViewModel> UsersListViewModels { get; set; }
     }
 }

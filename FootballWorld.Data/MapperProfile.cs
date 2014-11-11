@@ -30,6 +30,7 @@ namespace FootballWorld.Data
                  opts => opts.MapFrom(src => DateTime.Now));
 
             CreateMap<ApplicationUser, UsersListViewModel>().ReverseMap();
+            CreateMap<Article, IndexArticleViewModel>().ReverseMap();
         }
     }
 }

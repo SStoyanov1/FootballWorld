@@ -1,31 +1,73 @@
-﻿@{
+﻿@model IEnumerable<FootballWorld.ViewModel.IndexArticleViewModel>
+
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<hr />
+<div id="container">
+
+    <!--  Outer wrapper for presentation only, this can be anything you like -->
+    <div id="banner-fade">
+
+        <!-- start Basic Jquery Slider -->
+        <ul class="bjqs">
+            @foreach (var article in Model)
+            {
+                string imageBase64 = Convert.ToBase64String(article.Image);
+                string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                <li>
+                    <img src="@imageSrc" title="@article.Title" />
+                </li>
+            }
+        </ul>
+        <!-- end Basic jQuery Slider -->
+
+    </div>
+    <!-- End outer wrapper -->
+
+    <!--<h2>Slide Example</h2>
+    
+    <!--
+    <div id="banner-slide">
+    
+        <ul class="bjqs">
+            <li><a href=""><img src="img/banner01.jpg" title="Automatically generated caption"></a></li>
+            <li><img src="img/banner02.jpg" title="Automatically generated caption"></li>
+            <li><img src="img/banner03.jpg" title="Automatically generated caption"></li>
+        </ul>
+    
+    </div>-->
+
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jsslider")
+
+    <script class="secret-source">
+        jQuery(document).ready(function ($) {
+            $('#banner-fade').bjqs({
+                height: 520,
+                width: 820,
+                responsive: true,
+                animduration: 450, // how fast the animation are
+                animspeed: 2500, // the delay between each slide
+                automatic: true, // automatic
+                showcontrols: true, // show next and prev controls
+                centercontrols: true, // center controls verically
+                nexttext: 'Next', // Text for 'next' button (can use HTML)
+                prevtext: 'Prev', // Text for 'previous' button (can use HTML)
+                showmarkers: true, // Show individual slide markers
+                centermarkers: true, // Center markers horizontally
+
+                // interaction values
+                keyboardnav: true, // enable keyboard navigation
+                hoverpause: true, // pause the slider on hover
+
+                // presentational options
+                usecaptions: true, // show captions for images using the image title tag
+            });
+        });
+    </script>
+}
+

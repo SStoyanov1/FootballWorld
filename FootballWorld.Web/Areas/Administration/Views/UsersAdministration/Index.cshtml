@@ -29,7 +29,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.UserName)
+            @Html.ActionLink(item.UserName, "Details", "Users", new { area = "", id = item.Id }, new { })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FirstName)
@@ -44,8 +44,7 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", "Users", new { area = "", id = item.Id }, new { }) |
+            @Html.ActionLink("Edit", "Edit", "Users", new { Area = "", id=item.Id }, null) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
