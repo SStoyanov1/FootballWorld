@@ -1,0 +1,22 @@
+﻿@model FootballWorld.ViewModel.CommentViewModel
+<div class="well">
+    @if (Model.ProfileImage != null)
+    {
+        string imageBase64 = Convert.ToBase64String(Model.ProfileImage);
+        string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+        <hr />
+        <img src="@imageSrc" class="comment-profile-picture" />
+        <hr />
+    }
+    else
+    {
+        <hr />
+        <img src="~/Content/img/default.jpg" class="comment-profile-picture" />
+        <hr />
+    }
+    <div class="comment-info">
+        <div class="comment-id-name">@Model.AuthorUsername</div>
+        <div>@Model.Content</div>
+    </div>
+</div>
+

@@ -11,14 +11,18 @@ using FootballWorld.ViewModel;
 
 namespace FootballWorld.Areas.Administration.Controllers
 {
-    [Authorize(Roles = "Moderator, Admin")]
+    [Authorize(Roles = "Publicist, Moderator, Admin")]
     public class ArticlesAdministrationController : Controller
     {
         private ArticlesService _articleService;
+        private UsersService _usersService;
+        private CategoriesService _categoriesService;
 
-        public ArticlesAdministrationController(ArticlesService articleService)
+        public ArticlesAdministrationController(ArticlesService articleService, UsersService usersService, CategoriesService categoriesService)
         {
             _articleService = articleService;
+            _usersService = usersService;
+            _categoriesService = categoriesService;
         }
 
         // GET: Administration/Articles
@@ -31,7 +35,9 @@ namespace FootballWorld.Areas.Administration.Controllers
         //GET Administration/Articles/Create
         public ActionResult Create()
         {
-            return View();
+            var createArtileViewModel = new CreateArticleViewModel();
+            createArtileViewModel.Categories = _categoriesService.GetCategories();
+            return View(createArtileViewModel);
         }
 
         //POST Administration/Articles/Create
@@ -44,15 +50,9 @@ namespace FootballWorld.Areas.Administration.Controllers
                 return View(article);
             }
 
+            article.AuthorId = _usersService.GetUserByUserName(this.User.Identity.Name).Id;
             _articleService.Create(article);
             return RedirectToAction("Index");
-        }
-
-        //GET Administration/Articles/Details
-        public ActionResult Details(int id)
-        {
-            var article = _articleService.GetView(id);
-            return View(article);
         }
 
         //GET Administration/Articles/Edit
@@ -67,13 +67,8 @@ namespace FootballWorld.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(DetailsArticleViewModel article, HttpPostedFileBase updatedImage)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(article);
-            }
-
             var editedArticle = _articleService.Edit(article, updatedImage);
-            return RedirectToAction("Details", new { id = editedArticle });
+            return RedirectToAction("Details", "Articles", new { Area = "", id = editedArticle });
         }
 
         //GET Administration/Articles/Delete
@@ -89,7 +84,7 @@ namespace FootballWorld.Areas.Administration.Controllers
         public ActionResult Delete(DetailsArticleViewModel article)
         {
             _articleService.Delete(article);
-            return RedirectToAction("Index", "Articles");
+            return RedirectToAction("Index", "Articles", new { Area = "" });
         }
     }
 }

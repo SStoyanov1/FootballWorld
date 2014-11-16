@@ -1,0 +1,50 @@
+﻿@model IEnumerable<FootballWorld.ViewModel.ListArticleViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="categoriy-title">
+    <h2>България</h2>
+
+    @if (this.User.IsInRole("Admin") || this.User.IsInRole("Moderator") || this.User.IsInRole("Publicist"))
+    {
+        <p>
+            @Html.ActionLink("Създай статия", "Create", "ArticlesAdministration", new { Area = "Administration" }, null)
+        </p>
+    }
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="well article-list">
+        @if (item.Image != null)
+        {
+            string imageBase64 = Convert.ToBase64String(item.Image);
+            string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+            <hr />
+
+            <a href="/Articles/Details/@item.Id">
+                <img src="@imageSrc" class="comment-profile-picture" />
+            </a>
+            <hr />
+        }
+        else
+        {
+            <hr />
+            <img src="~/Content/img/default.jpg" class="article-list-picture" />
+            <hr />
+        }
+        <div class="comment-info">
+            <a href="/Articles/Details/@item.Id">
+                <div class="article-list-name">@item.Title</div>
+            </a>
+            <div>@item.Content</div>
+        </div>
+    </div>
+}
+
+@for (int i = 1; i <= ViewBag.Pages; i++)
+{
+    <a href="@Url.Action("List", new { id = i })">@i</a>
+}

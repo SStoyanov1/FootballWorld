@@ -4,54 +4,82 @@
     ViewBag.Title = "View";
 }
 
-<h2>@Html.DisplayFor(model => model.Title)</h2>
+<div class="jumbotron">
+    <h2 class="title-details">@Html.DisplayFor(model => model.Title)</h2>
+    <p class="subtitle-details">@Html.DisplayFor(model => model.Subtitle)</p>
+</div>
 
 <div>
-    <h4></h4>
-    <hr />
     @{
         if (Model.Image != null)
         {
             string imageBase64 = Convert.ToBase64String(Model.Image);
             string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
-            <img src="@imageSrc" />
+            <hr />
+            <div>
+                <img src="@imageSrc" class="img-details" />
+            </div>
         }
     }
+    <br />
+    <p class="text-warning"><strong>Published:</strong><span>@Html.DisplayFor(model => model.DateCreated)</span></p>
+    <hr />
+    <div class="content-details">
+        @Html.DisplayFor(model => model.Content)
+    </div>
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Subtitle)
+            <br />
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Subtitle)
+            <p class="text-warning"><strong>Автор:</strong><span>@Html.DisplayFor(model => model.AuthorName)</span></p>
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Content)
+            <br />
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateCreated)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AuthorName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AuthorName)
+            <p class="text-warning"><strong>Категория:</strong><span>@Html.DisplayFor(model => model.Category)</span></p>
         </dd>
     </dl>
 </div>
+
+@if (Model.VideoAddress != null)
+{
+    <div class="video-details">
+        <iframe src=@Model.VideoAddress width='626' height='367' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    </div>
+}
+<br />
+<div id="Comments">
+    @foreach (var comment in Model.Comments)
+    {
+        @Html.Partial("~/Areas/Comments/Views/Shared/_CommentPartial.cshtml", comment)
+    }
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    using (Ajax.BeginForm("PostComment", "Comments", new { Area = "Comments" },
+        new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.InsertAfter, UpdateTargetId = "Comments" }))
+    {
+        @Html.Hidden("ArticleId", Model.Id)
+        <div>
+            @Html.TextArea("comment")
+        </div>
+        @Html.AntiForgeryToken()
+    <input type="submit" value="Submit comment" class="btn btn-primary" />
+    }
+}
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @if (this.User.IsInRole("Admin") || this.User.IsInRole("Moderator"))
+    {
+        @Html.ActionLink("Edit", "Edit", "ArticlesAdministration", new { Area = "Administration", id = Model.Id }, null)
+        <span>|</span>
+    }
+    @Html.ActionLink("Back to List", "Index", "Home")
 </p>
+
+@section scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}

@@ -24,11 +24,18 @@ namespace FootballWorld.ViewModel
 
         public DateTime DateCreated { get; set; }
 
-        public string AuthorId { get; set; }
+        [DisplayName("Video address")]
+        public string VideoAddress { get; set; }
 
         [DisplayName("Select File to Upload")]
         public HttpPostedFileBase Image { get; set; }
 
-        public virtual ApplicationUser Author { get; set; }
+        public string AuthorId { get; set; }
+
+        public Category Category { get; set; }
+
+        public int CategoryId { get; set; }
+
+        public IEnumerable<Category> Categories { get; set; }
     }
 }

@@ -21,23 +21,28 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", new { area = "", controller = "Home" })</li>
+                    <li>@Html.ActionLink("Начало", "Index", new { area = "", controller = "Home" })</li>
+                    <li>@Html.ActionLink("България", "Index", new { area = "Categories", controller = "Bulgaria" })</li>
+                    <li>@Html.ActionLink("Испания", "Index", new { area = "Categories", controller = "Spain" })</li>
+                    <li>@Html.ActionLink("Англия", "Index", new { area = "Categories", controller = "England" })</li>
+                    <li>@Html.ActionLink("Германия", "Index", new { area = "Categories", controller = "Germany" })</li>
+                    <li>@Html.ActionLink("Други", "Index", new { area = "Categories", controller = "Others" })</li>
                     @if (this.User.IsInRole("Moderator") || this.User.IsInRole("Admin"))
                     {
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Administration <b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Администрация <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Articles Management", "Index", "ArticlesAdministration", new { Area = "Administration" }, new { })</li>
+                                <li>@Html.ActionLink("Статии", "Index", "ArticlesAdministration", new { Area = "Administration" }, new { })</li>
                                 @if (this.User.IsInRole("Admin"))
                                 {
                                     <li class="divider"></li>
-                                    <li>@Html.ActionLink("Roles Management", "Index", "Roles", new { Area = "Administration" }, new { })</li>
-                                    <li>@Html.ActionLink("Users Management", "Index", "UsersAdministration", new { Area = "Administration" }, new { })</li>
+                                    <li>@Html.ActionLink("Роли", "Index", "Roles", new { Area = "Administration" }, new { })</li>
+                                    <li>@Html.ActionLink("Потребители", "Index", "UsersAdministration", new { Area = "Administration" }, new { })</li>
                                 }
                             </ul>
                         </li>
                     }
-                    <li>@Html.ActionLink("Contact", "Contact", new { area = "", controller = "Home" })</li>
+                    <li>@Html.ActionLink("Контакти", "Contact", new { area = "", controller = "Home" })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -47,7 +52,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>Football World Ltd. &copy; Telerik Academy 2014</p>
         </footer>
     </div>
 

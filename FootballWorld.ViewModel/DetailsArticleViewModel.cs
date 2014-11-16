@@ -1,6 +1,7 @@
 ﻿using FootballWorld.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -21,14 +22,19 @@ namespace FootballWorld.ViewModel
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}",
-               ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DateCreated { get; set; }
 
+        [DisplayName("Author")]
         public string AuthorName { get; set; }
+
+        [DisplayName("Video address")]
+        public string VideoAddress { get; set; }
 
         public byte[] Image { get; set; }
 
-        public IEnumerable<Category> Categories { get; set; }
+        public string Category { get; set; }
+
+        public IEnumerable<CommentViewModel> Comments { get; set; }
     }
 }

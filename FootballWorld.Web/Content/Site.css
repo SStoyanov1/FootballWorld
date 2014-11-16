@@ -37,9 +37,14 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
     text-align: center;
 }
 
+h2.title-details {
+    font-size: 40px;
+}
+
 .subtitle-details {
     margin-left: auto;
     margin-right: auto;
+        width: 480px;
     text-align: center;
 }
 
@@ -53,6 +58,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
     width: 600px;
     margin-left: auto;
     margin-right: auto;
+    text-align: left;
 }
 
 .text-warning {
@@ -73,7 +79,7 @@ pre {
     display: block;
     padding: 9.5px;
     margin: 0 0 10px;
-    font-size: 13px;
+    font-size: 20px;
     line-height: 20px;
     word-break: break-all;
     word-wrap: break-word;
@@ -133,4 +139,87 @@ ol.bjqs-markers li a {
 
 p.bjqs-caption {
     background: rgba(255,255,255,0.5);
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+}
+
+.profile-image {
+    width: 260px;
+}
+
+.video-details {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.comment-profile-picture {
+    width: 100px;
+    height: 90px;
+    float:left;
+    margin-top: -40px;
+}
+
+.well {
+    width: 700px;
+    height: 135px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.comment-info {
+    margin-top: -60px;
+    margin-left: 120px;
+}
+
+.comment-id-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#form0 {
+        margin-left: 220px;
+    margin-right: auto;
+}
+
+#comment {
+    width: 600px;
+    height: 100px;
+}
+
+.categoriy-title {
+        margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.article-list-picture {
+    width: 150px;
+    height: 110px;
+    float:left;
+    margin-top: -40px;
+}
+
+.article-list-name {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.article-list {
+    width: 800px;
+    height: 140px;
+}
+
+.article-list:hover {
+    background-color: #DF691A;
+}
+
+.article-list:hover .article-list-name {
+    color: white;
+}
+
+.article-list:hover hr {
+    border-color: #DF691A;
 }

@@ -16,6 +16,10 @@ namespace FootballWorld.Model
 
         public string AuthorId { get; set; }
 
+        public int ArticleId { get; set; }
+
+        public virtual Article Article { get; set; }
+
         public virtual ApplicationUser Author { get; set; }
     }
 }

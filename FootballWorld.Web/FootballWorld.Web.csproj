@@ -56,6 +56,9 @@
     <Reference Include="Microsoft.Practices.Unity.Interception">
       <HintPath>..\packages\Unity.Interception.3.5.1404.0\lib\Net45\Microsoft.Practices.Unity.Interception.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration">
+      <HintPath>..\packages\Unity.Interception.3.5.1404.0\lib\Net45\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.Unity.Mvc">
       <HintPath>..\packages\Unity.Mvc.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Mvc.dll</HintPath>
     </Reference>
@@ -189,6 +192,14 @@
     <Compile Include="Areas\Administration\Controllers\ArticlesAdministrationController.cs" />
     <Compile Include="Areas\Administration\Controllers\RolesController.cs" />
     <Compile Include="Areas\Administration\Controllers\UsersAdministrationController.cs" />
+    <Compile Include="Areas\Categories\CategoriesAreaRegistration.cs" />
+    <Compile Include="Areas\Categories\Controllers\BulgariaController.cs" />
+    <Compile Include="Areas\Categories\Controllers\EnglandController.cs" />
+    <Compile Include="Areas\Categories\Controllers\GermanyController.cs" />
+    <Compile Include="Areas\Categories\Controllers\OthersController.cs" />
+    <Compile Include="Areas\Categories\Controllers\SpainController.cs" />
+    <Compile Include="Areas\Comments\CommentsAreaRegistration.cs" />
+    <Compile Include="Areas\Comments\Controllers\CommentsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -227,6 +238,13 @@
     <Content Include="Areas\Administration\Views\Roles\ManageUserRoles.cshtml" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Views\UsersAdministration\Index.cshtml" />
+    <Content Include="Areas\Comments\Views\web.config" />
+    <Content Include="Areas\Comments\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Comments\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Comments\Views\Shared\_CommentPartial.cshtml" />
+    <Content Include="Areas\Categories\Views\web.config" />
+    <Content Include="Areas\Categories\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Categories\Views\Bulgaria\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -234,6 +252,8 @@
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.slides.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -274,7 +294,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Areas\Administration\Views\ArticlesAdministration\Index.cshtml" />
     <Content Include="Areas\Administration\Views\ArticlesAdministration\Create.cshtml" />
-    <Content Include="Areas\Administration\Views\ArticlesAdministration\Details.cshtml" />
+    <Content Include="Views\Articles\Details.cshtml" />
     <Content Include="Areas\Administration\Views\ArticlesAdministration\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\ArticlesAdministration\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
@@ -284,7 +304,14 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="Views\Articles\" />
+    <Folder Include="Areas\Categories\Models\" />
+    <Folder Include="Areas\Categories\Views\England\" />
+    <Folder Include="Areas\Categories\Views\Germany\" />
+    <Folder Include="Areas\Categories\Views\Others\" />
+    <Folder Include="Areas\Categories\Views\Shared\" />
+    <Folder Include="Areas\Categories\Views\Spain\" />
+    <Folder Include="Areas\Comments\Models\" />
+    <Folder Include="Areas\Comments\Views\Comments\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

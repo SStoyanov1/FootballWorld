@@ -18,11 +18,11 @@ namespace FootballWorld.ViewModel
         public string UserName { get; set; }
 
         [DisplayName("First Name")]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
         public string FirstName { get; set; }
 
         [DisplayName("Last Name")]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
         public string LastName { get; set; }
 
         [Phone]

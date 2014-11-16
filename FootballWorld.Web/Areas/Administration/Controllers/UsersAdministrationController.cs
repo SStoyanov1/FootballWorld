@@ -8,7 +8,7 @@ using FootballWorld.Services;
 
 namespace FootballWorld.Areas.Administration.Controllers
 {
-    [Authorize(Roles = "Admin, ")]
+    [Authorize(Roles = "Admin")]
     public class UsersAdministrationController : Controller
     {
         UsersService _usersService;

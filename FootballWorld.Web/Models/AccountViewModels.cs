@@ -78,11 +78,11 @@ namespace FootballWorld.Models
         [Display(Name = "Email address")]
         public string Email { get; set; }
 
-        [StringLength(30, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(30, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
-        [StringLength(30, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(30, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 

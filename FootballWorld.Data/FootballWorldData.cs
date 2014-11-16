@@ -44,6 +44,11 @@ namespace FootballWorld.Data
             get { return this.GetRepository<ApplicationUser>(); }
         }
 
+        public IRepository<Category> Categories
+        {
+            get { return this.GetRepository<Category>(); }
+        }
+
         public void SaveChanges()
         {
             this.context.SaveChanges();

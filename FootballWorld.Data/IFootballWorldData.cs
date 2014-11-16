@@ -25,6 +25,11 @@
             get;
         }
 
+        IRepository<Category> Categories
+        {
+            get;
+        }
+
         void SaveChanges();
     }
 }

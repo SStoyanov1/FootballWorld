@@ -36,6 +36,7 @@ namespace FootballWorld.Services
 
             Article articleToCreate = Mapper.Map<CreateArticleViewModel, Article>(article);
             articleToCreate.Image = uploadFile;
+            articleToCreate.DateCreated = DateTime.Now;
 
             var articleCreated = this.Data.Articles.Add(articleToCreate);
             return articleCreated.Id;
@@ -63,6 +64,11 @@ namespace FootballWorld.Services
                 article.Image = articleToEdit.Image;
             }
 
+            if (article.DateCreated.Year == 1)
+	        {
+	        	 article.DateCreated = articleToEdit.DateCreated;
+	        }
+
             Mapper.DynamicMap<DetailsArticleViewModel, Article>(article, articleToEdit);
 
             this.Data.Articles.Save();
@@ -76,7 +82,7 @@ namespace FootballWorld.Services
 
         public IEnumerable<IndexArticleViewModel> GetLastFiveViews()
         {
-            var articles = this.Data.Articles.FindAll().OrderBy(x => x.DateCreated).Select(x => Mapper.Map<Article, IndexArticleViewModel>(x)).Take(3).ToList();
+            var articles = this.Data.Articles.FindAll().OrderByDescending(x => x.DateCreated).Select(x => Mapper.Map<Article, IndexArticleViewModel>(x)).Take(5).ToList();
             return articles;
         }
     }
