@@ -11,7 +11,7 @@ namespace FootballWorld.Services
 {
     public class BulgariaService : BaseService
     {
-        const int PageSize = 5;
+        const int PageSize = 4;
         const int ListArticleContentLength = 150;
         const string CategoryName = "Bulgaria";
 

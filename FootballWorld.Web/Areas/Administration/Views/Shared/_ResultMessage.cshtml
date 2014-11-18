@@ -1,0 +1,7 @@
+﻿@if (TempData["ResultMessage"] != null)
+{
+    <div class="alert alert-dismissable alert-success pull-right" id="alert-success">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong></strong> @TempData["ResultMessage"]
+    </div>
+}

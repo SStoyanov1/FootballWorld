@@ -44,7 +44,6 @@
     </div>
 }
 
-@for (int i = 1; i <= ViewBag.Pages; i++)
-{
-    <a href="@Url.Action("List", new { id = i })">@i</a>
-}
+@Html.Partial("~/Areas/Categories/Views/Shared/_Paging.cshtml")
+
+

@@ -18,5 +18,10 @@ namespace FootballWorld.Services
             this.Data.Comments.Add(commentToAdd);
             this.Data.SaveChanges();
         }
+
+        public IEnumerable<Comment> GetAll()
+        {
+            return this.Data.Comments.FindAll();
+        }
     }
 }

@@ -11,17 +11,16 @@
         {
             string imageBase64 = Convert.ToBase64String(Model.ProfileImage);
             string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+
             <hr />
             <img src="@imageSrc" class="profile-image" />
             <hr />
         }
         else
         {
-            <hr />
-            <img src="~/Content/img/default.jpg" class="profile-image" />
-            <hr />
+            @Html.Partial("~/Views/Shared/_DefaultProfileImage.cshtml", Model)
         }
-}
+    }
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -60,11 +59,10 @@
             <p>
                 @Html.ActionLink("Edit", "Edit", "Users", new { Area = "", id = Model.Id }, null) |
                 @if (this.User.IsInRole("Admin") || this.User.IsInRole("Moderator"))
-	            {   
-		            @Html.ActionLink("Back to List", "Index", "UsersAdministration", new { Area = "Administration" }, null)
-	            }
+                {
+                    @Html.ActionLink("Back to List", "Index", "UsersAdministration", new { Area = "Administration" }, null)
+                }
             </p>
         }
     </dl>
 </div>
-

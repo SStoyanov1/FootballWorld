@@ -9,7 +9,7 @@ namespace FootballWorld.Areas.Categories.Controllers
 {
     public class BulgariaController : Controller
     {
-        private const int PageSize = 5;
+        private const int PageSize = 4;
 
         private BulgariaService _bulgariaService;
 

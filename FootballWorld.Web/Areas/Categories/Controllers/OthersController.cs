@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FootballWorld.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,22 @@ namespace FootballWorld.Areas.Categories.Controllers
 {
     public class OthersController : Controller
     {
-        // GET: Categories/Others
-        public ActionResult Index()
+        private const int PageSize = 4;
+
+        private OthersService _othersService;
+
+        public OthersController(OthersService othersService)
         {
-            return View();
+            _othersService = othersService;
+        }
+
+        // GET: Categories/Bulgaria
+        public ActionResult Index(int? id)
+        {
+            var articles = _othersService.GetArticles(id);
+            var allArticlesCount = _othersService.GetArticlesCount();
+            ViewBag.Pages = Math.Ceiling((double)allArticlesCount / PageSize);
+            return View(articles);
         }
     }
 }

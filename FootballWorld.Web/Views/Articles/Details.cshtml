@@ -10,17 +10,7 @@
 </div>
 
 <div>
-    @{
-        if (Model.Image != null)
-        {
-            string imageBase64 = Convert.ToBase64String(Model.Image);
-            string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
-            <hr />
-            <div>
-                <img src="@imageSrc" class="img-details" />
-            </div>
-        }
-    }
+    @Html.Partial("~/Views/Shared/_ArticleDetailsImage.cshtml", Model)
     <br />
     <p class="text-warning"><strong>Published:</strong><span>@Html.DisplayFor(model => model.DateCreated)</span></p>
     <hr />

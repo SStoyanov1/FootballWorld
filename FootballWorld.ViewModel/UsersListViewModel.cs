@@ -13,27 +13,27 @@ namespace FootballWorld.ViewModel
         [Key]
         public string Id { get; set; }
 
-        [DisplayName("Username")]
+        [DisplayName("Потребителско име")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         public string UserName { get; set; }
 
-        [DisplayName("First Name")]
+        [DisplayName("Първо име")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
         public string FirstName { get; set; }
 
-        [DisplayName("Last Name")]
+        [DisplayName("Фамилия")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
         public string LastName { get; set; }
 
         [Phone]
-        [DisplayName("Phone Number")]
+        [DisplayName("Телефонен номер")]
         public string PhoneNumber { get; set; }
 
-        [DisplayName("Email")]
+        [DisplayName("Имейл")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [DisplayName("Profile Image")]
+        [DisplayName("Аватар")]
         public byte[] ProfileImage { get; set; }
     }
 }

@@ -1,0 +1,13 @@
+﻿@model FootballWorld.ViewModel.DetailsArticleViewModel
+
+@{
+    if (Model.Image != null)
+    {
+        string imageBase64 = Convert.ToBase64String(Model.Image);
+        string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+        <hr />
+        <div>
+            <img src="@imageSrc" class="img-details" />
+        </div>
+    }
+}

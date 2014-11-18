@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Users</h2>
+<h2>Потребители</h2>
 
 <table class="table">
     <tr>
@@ -44,10 +44,12 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", "Users", new { Area = "", id=item.Id }, null) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Редактирай", "Edit", "Users", new { Area = "", id=item.Id }, null) |
+            @Html.ActionLink("Изтрий", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
 
 </table>
+
+@Html.Partial("~/Areas/Administration/Views/Shared/_UserPaging.cshtml")

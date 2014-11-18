@@ -26,10 +26,28 @@ namespace FootballWorld.Areas.Administration.Controllers
         }
 
         // GET: Administration/Articles
-        public ActionResult Index()
+        public ActionResult Index(string Sorting_Order)
         {
+            ViewBag.SortingName = String.IsNullOrEmpty(Sorting_Order) ? "Name_Description" : "";
+            ViewBag.SortingDate = Sorting_Order == "Date_Enroll" ? "Date_Description" : "Date";
             var articles = _articleService.GetViews();
-            return View(articles);
+            switch (Sorting_Order)
+            {
+                case "Name_Description":
+                    articles = articles.OrderByDescending(stu => stu.Title);
+                    break;
+                case "Date_Enroll":
+                    articles = articles.OrderBy(stu => stu.DateCreated);
+                    break;
+                case "Date_Description":
+                    articles = articles.OrderByDescending(stu => stu.DateCreated);
+                    break;
+                default:
+                    articles = articles.OrderBy(stu => stu.Title);
+                    break;
+            }
+
+            return View(articles.ToList());
         }
 
         //GET Administration/Articles/Create

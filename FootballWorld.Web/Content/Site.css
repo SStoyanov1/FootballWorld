@@ -223,3 +223,11 @@ p.bjqs-caption {
 .article-list:hover hr {
     border-color: #DF691A;
 }
+
+.pagination {
+    margin-left: 500px;
+}
+
+.pagination a:hover {
+    border-color: #DF691A;
+}

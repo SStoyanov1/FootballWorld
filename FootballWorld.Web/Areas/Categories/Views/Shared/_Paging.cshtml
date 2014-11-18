@@ -1,0 +1,10 @@
+﻿<div id="pages">
+    <ul class="pagination">
+        @for (int i = 1; i <= ViewBag.Pages; i++)
+        {
+            <li>
+                <a href="@Url.Action("Index", new { id = i })">@i</a>
+            </li>
+        }
+    </ul>
+</div>

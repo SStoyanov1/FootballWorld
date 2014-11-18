@@ -11,6 +11,8 @@ namespace FootballWorld.Areas.Administration.Controllers
     [Authorize(Roles = "Admin")]
     public class UsersAdministrationController : Controller
     {
+        private const int PageSize = 4;
+
         UsersService _usersService;
 
         public UsersAdministrationController(UsersService usersService)
@@ -19,9 +21,11 @@ namespace FootballWorld.Areas.Administration.Controllers
         }
 
         // GET: Administration/Users
-        public ActionResult Index()
+        public ActionResult Index(string Sorting_Order, int? id)
         {
-            var usersViews = _usersService.GetAllUsersViews();
+            var usersViews = _usersService.GetUsersViews(id);
+            var allUserViewsCount = _usersService.GetUserCount();
+            ViewBag.Pages = Math.Ceiling(Convert.ToDouble(allUserViewsCount) / PageSize);
             return View(usersViews);
         }
     }

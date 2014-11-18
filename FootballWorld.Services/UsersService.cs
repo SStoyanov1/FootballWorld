@@ -14,9 +14,15 @@ namespace FootballWorld.Services
 {
     public class UsersService : BaseService
     {
-        public IEnumerable<UsersListViewModel> GetAllUsersViews()
+        private const int PageSize = 4;
+
+        public IEnumerable<UsersListViewModel> GetUsersViews(int? id)
         {
-            var users = this.Data.Users.FindAll().Select(us => Mapper.Map<ApplicationUser, UsersListViewModel>(us));
+            int pageNumber = id.GetValueOrDefault(1);
+            
+            var users = this.Data.Users.FindAll().Select(us => Mapper.Map<ApplicationUser, UsersListViewModel>(us))
+                .Skip((pageNumber - 1) * PageSize).Take(PageSize); ;
+
             return users;
         }
 
@@ -53,6 +59,11 @@ namespace FootballWorld.Services
             Mapper.DynamicMap<UsersListViewModel, ApplicationUser>(user, userToEdit);
             this.Data.Users.Save();
             return userToEdit.Id;
-        }   
+        }
+
+        public object GetUserCount()
+        {
+            return this.Data.Users.FindAll().Count();
+        }
     }
 }
